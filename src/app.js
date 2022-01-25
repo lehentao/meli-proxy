@@ -3,7 +3,7 @@ const displayRoutes = require('express-routemap');
 const fs = require('fs');
 const app = express();
 
-const port = env.process.PORT || 5000;
+const port = process.env.PORT || 5000;
 app.use('/', require('./routes'));
 // Handle 404
 app.use((req, res) => {
