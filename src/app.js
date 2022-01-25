@@ -5,7 +5,7 @@ const http = require('http');
 const app = express();
 const server = http.createServer(app);
 
-const port = process.env.SERVER_PORT || 5000;
+const port = process.env.PORT || 5000;
 app.use('/', require('./routes'));
 // Handle 404
 app.use((req, res) => {
