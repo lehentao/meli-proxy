@@ -2,7 +2,7 @@ const ipRangeCheck = require("ip-range-check");
 const yaml = require('yamljs')
 const routesConfig = [
   {
-    originIps: ['::ffff:127.0.0.1',],
+    originIps: ['::ffff:127.0.0.1'],
     path: '/someroute/categories',
     pathTransform: {
       basepath: '/someroute',
@@ -16,7 +16,7 @@ const routesConfig = [
   },
   {
     path: '/meli-api',
-    hosts: ['localhost', 'my.host.local'],
+    hosts: ['localhost', 'my.host.local', 'meli-proxy-2431.herokuapp.com'],
     methods: ['get', 'put', 'patch', 'options'],
     routeTo: {
       protocol: 'https',
