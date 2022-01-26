@@ -1,0 +1,154 @@
+Listening on port 80
+┌─────────────────────────┬──────────────────────────────────────────────────┐
+│ METHOD                  │ ROUTE                                            │
+├─────────────────────────┼──────────────────────────────────────────────────┤
+│ GET POST PUT PATCH DEL… │ /.*/                                             │
+├─────────────────────────┼──────────────────────────────────────────────────┤
+│ GET                     │ /config-data                                     │
+└─────────────────────────┴──────────────────────────────────────────────────┘
+Listening on port 80
+┌─────────────────────────┬──────────────────────────────────────────────────┐
+│ METHOD                  │ ROUTE                                            │
+├─────────────────────────┼──────────────────────────────────────────────────┤
+│ GET POST PUT PATCH DEL… │ /.*/                                             │
+├─────────────────────────┼──────────────────────────────────────────────────┤
+│ GET                     │ /config-data                                     │
+└─────────────────────────┴──────────────────────────────────────────────────┘
+{
+  ip: '::ffff:127.0.0.1',
+  host: 'my.host.local',
+  originalUrl: '/meli-api/v1/categories',
+  userAgent: 'insomnia/2021.7.2'
+}
+{
+  ip: '::ffff:127.0.0.1',
+  host: 'my.host.local',
+  originalUrl: '/meli-api/v1/categories',
+  userAgent: 'insomnia/2021.7.2'
+}
+{
+  ip: '::ffff:127.0.0.1',
+  host: 'my.host.local',
+  originalUrl: '/meli-api/v1/categories',
+  userAgent: 'insomnia/2021.7.2'
+}
+{
+  ip: '::ffff:127.0.0.1',
+  host: 'my.host.local',
+  originalUrl: '/meli-api/v1/categories',
+  userAgent: 'insomnia/2021.7.2'
+}
+{
+  ip: '::ffff:127.0.0.1',
+  host: 'my.host.local',
+  originalUrl: '/meli-api/v1/categories/51',
+  userAgent: 'insomnia/2021.7.2'
+}
+{
+  ip: '::ffff:127.0.0.1',
+  host: 'my.host.local',
+  originalUrl: '/meli-api/v1/categories/51',
+  userAgent: 'insomnia/2021.7.2'
+}
+{
+  ip: '::ffff:127.0.0.1',
+  host: 'my.host.local',
+  originalUrl: '/meli-api/v1/categories/51',
+  userAgent: 'insomnia/2021.7.2'
+}
+{
+  ip: '::ffff:192.168.1.1',
+  host: '192.168.1.32',
+  originalUrl: '/',
+  userAgent: undefined
+}
+{
+  ip: '::ffff:192.168.1.1',
+  host: '192.168.1.32',
+  originalUrl: '/HNAP1/',
+  userAgent: undefined
+}
+{
+  ip: '::ffff:192.168.1.1',
+  host: '192.168.1.32',
+  originalUrl: '/JNAP/',
+  userAgent: undefined
+}
+Listening on port 80
+┌─────────────────────────┬──────────────────────────────────────────────────┐
+│ METHOD                  │ ROUTE                                            │
+├─────────────────────────┼──────────────────────────────────────────────────┤
+│ GET POST PUT PATCH DEL… │ /.*/                                             │
+└─────────────────────────┴──────────────────────────────────────────────────┘
+{
+  ip: '::ffff:127.0.0.1',
+  host: 'my.host.local',
+  originalUrl: '/meli-api/v1/categories/51',
+  userAgent: 'insomnia/2021.7.2'
+}
+{
+  ip: '::ffff:127.0.0.1',
+  host: 'my.host.local',
+  originalUrl: '/meli-api/v1/categories/51',
+  userAgent: 'insomnia/2021.7.2'
+}
+{
+  ip: '::ffff:127.0.0.1',
+  host: 'my.host.local',
+  originalUrl: '/meli-api/v1/categories/51',
+  userAgent: 'insomnia/2021.7.2'
+}
+{
+  ip: '::ffff:127.0.0.1',
+  host: 'my.host.local',
+  originalUrl: '/meli-api/v1/categories/51',
+  userAgent: 'insomnia/2021.7.2'
+}
+{
+  ip: '::ffff:127.0.0.1',
+  host: 'my.host.local',
+  originalUrl: '/meli-api/v1/categories/51',
+  userAgent: 'insomnia/2021.7.2'
+}
+{
+  ip: '::ffff:127.0.0.1',
+  host: 'my.host.local',
+  originalUrl: '/meli-api/v1/categories/51',
+  userAgent: 'insomnia/2021.7.2'
+}
+{
+  ip: '::ffff:127.0.0.1',
+  host: 'my.host.local',
+  originalUrl: '/meli-api/v1/categories/51',
+  userAgent: 'insomnia/2021.7.2'
+}
+{
+  ip: '::ffff:127.0.0.1',
+  host: 'my.host.local',
+  originalUrl: '/meli-api/v1/categories/51',
+  userAgent: 'insomnia/2021.7.2'
+}
+{
+  ip: '::ffff:127.0.0.1',
+  host: 'my.host.local',
+  originalUrl: '/meli-api/v1/categories/51',
+  userAgent: 'insomnia/2021.7.2'
+}
+{
+  ip: '::ffff:127.0.0.1',
+  host: 'my.host.local',
+  originalUrl: '/meli-api/v1/categories/51',
+  userAgent: 'insomnia/2021.7.2'
+}
+{
+  ip: '::ffff:127.0.0.1',
+  host: 'my.host.local',
+  originalUrl: '/meli-api/v1/categories/51',
+  userAgent: 'insomnia/2021.7.2'
+}
+{
+  ip: '::ffff:127.0.0.1',
+  host: 'my.host.local',
+  originalUrl: '/meli-api/v1/categories/51',
+  userAgent: 'insomnia/2021.7.2'
+}

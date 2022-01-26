@@ -1,33 +1,6 @@
 const ipRangeCheck = require("ip-range-check");
-const yaml = require('yamljs')
-const routesConfig = [
-  {
-    originIps: ['::ffff:127.0.0.1'],
-    path: '/someroute/categories',
-    pathTransform: {
-      basepath: '/someroute',
-      replaceTo: '/'
-    },
-    methods: ['get', 'post'],
-    routeTo: {
-      protocol: 'https',
-      host: 'api.mercadolibre.com'
-    }
-  },
-  {
-    path: '/meli-api',
-    hosts: ['localhost', 'my.host.local', 'meli-proxy-2431.herokuapp.com'],
-    methods: ['get', 'put', 'patch', 'options'],
-    routeTo: {
-      protocol: 'https',
-      host: '61eff8e2732d93001778e768.mockapi.io',
-    },
-    pathTransform: {
-      basepath: '/meli-api',
-      replaceTo: '/api'
-    }
-  }
-]
+const configs = require('../../route-config.json');
+const routesConfig = configs.routes;
 
 function validateIP(ip, originIPs) {
   if (!originIPs || originIPs.length === 0) {
@@ -58,10 +31,12 @@ function filterRoutes(method, data) {
 
 function getReqData(req) {
   return {
-    ip: req.headers['x-forwarded-for'] || req.connection.remoteAddress,
+    protocol: req.protocol,
+    method: req.method,
+    ip: req.clientIp || req.headers['x-forwarded-for'] || req.connection.remoteAddress,
     host: req.headers['host'],
     originalUrl: req.originalUrl,
-    userAgent: req.headers['user-agent'],
+    userAgent: req.headers['user-agent']
   }
 }
 

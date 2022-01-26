@@ -1,0 +1,100 @@
+{
+  "routes": [
+    {
+      "name": "api.mercadolibre.com",
+      "originIps": [
+        "::ffff:127.0.0.1"
+      ],
+      "path": "/someroute/categories",
+      "pathTransform": {
+        "basepath": "/someroute",
+        "replaceTo": "/"
+      },
+      "methods": [
+        "get",
+        "post"
+      ],
+      "routeTo": {
+        "protocol": "https",
+        "host": "api.mercadolibre.com"
+      }
+    },
+    {
+      "name": "meli-api",
+      "path": "/meli-api",
+      "hosts": [
+        "localhost",
+        "my.host.local"
+      ],
+      "methods": [
+        "get",
+        "put",
+        "patch",
+        "options"
+      ],
+      "routeTo": {
+        "protocol": "https",
+        "host": "61eff8e2732d93001778e768.mockapi.io"
+      },
+      "pathTransform": {
+        "basepath": "/meli-api",
+        "replaceTo": "/api"
+      }
+    },
+    {
+      "name": "meli-api-2",
+      "path": "/api",
+      "hosts": [
+        "localhost",
+        "my.host.local"
+      ],
+      "methods": [
+        "get",
+        "put",
+        "patch",
+        "options"
+      ],
+      "routeTo": {
+        "protocol": "https",
+        "host": "61eff8e2732d93001778e768.mockapi.io"
+      }
+    }
+  ],
+  "reteLimit": {
+    "global": {
+      "time": 300000,
+      "maxCnx": 10
+    },
+    "paths": [
+      {
+        "path": "/api/v1/categories/48",
+        "time": 10000,
+        "maxConextions": 2
+      }
+    ]
+  },
+  "requestLimit": [
+    {
+      "maxRequests": 10,
+      "routesList": [
+        {
+          "path": "/api/v1/categories/21",
+          "method": "GET"
+        },
+        {
+          "path": "/api/v1/categories/21",
+          "method": "PUT"
+        }
+      ]
+    },
+    {
+      "maxRequests": 2,
+      "routesList": [
+        {
+          "path": "/api/v1/categories",
+          "method": "POST"
+        }
+      ]
+    }
+  ]
+}

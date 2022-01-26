@@ -2,20 +2,58 @@ const express = require('express');
 const displayRoutes = require('express-routemap');
 const fs = require('fs');
 const http = require('http');
+const rateLimit = require('express-rate-limit');
+const RequestLimiter = require('express-request-limiter');
+const config = require('express-request-limiter');
 const app = express();
 const server = http.createServer(app);
+const { saveTransactionInterceptor } = require('./interseptors/save-transaction-interceptor')
 
 const port = process.env.PORT || 5000;
+
+// Rate Limit
+if (config.rateLimit) {
+  // Global
+  if (config.rateLimit.global) {
+    const limiter = rateLimit({
+      windowMs: config.rateLimit.global.time,
+      max: config.rateLimit.global.maxCnx,
+      standardHeaders: true,
+      legacyHeaders: false
+    })
+    app.use(limiter)
+  }
+  // By Path
+  config.rateLimit.paths((rl) => {
+    const limiter = rateLimit({
+      windowMs: rl.time,
+      max: rl.maxCnx,
+      standardHeaders: true,
+      legacyHeaders: false
+    })
+    app.use(rl.path, limiter)
+  })
+}
+
+// Request Limit 
+if (config.requestLimiter) {
+  config.requestLimiter.forEach((rl) => {
+    const requestLimiter = RequestLimiter({
+      maxRequests: rl.maxRequests,
+      headers: true,
+      routesList: rl.routesList,
+    });
+    app.use(requestLimiter);
+  })
+}
+app.use(saveTransactionInterceptor)
+
+
 app.use('/', require('./routes'));
 // Handle 404
 app.use((req, res) => {
   res.status(404).send('Route not Found');
 });
-
-app.get('/config-data', (req, res) => {
-  //fs.readFile('../route-config.yml');
-  res.sendFile(`${__dirname}/route-config.yml`)
-})
 
 // Handle 500
 app.use((error, req, res) => {
