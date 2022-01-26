@@ -8,44 +8,65 @@ const config = require('express-request-limiter');
 const app = express();
 const server = http.createServer(app);
 const { saveTransactionInterceptor } = require('./interseptors/save-transaction-interceptor')
+const admin = require("firebase-admin");
+const { getDatabase } = require('firebase-admin/database');
+const { setConfig } = require('./configs/configs');
+const serviceAccount = require(process.env.FIREBASE_ADMIN_KEY);
+
+// Initialize DB
+
+admin.initializeApp({
+  credential: admin.credential.cert(serviceAccount),
+  databaseURL: "https://meli-proxy-2c726-default-rtdb.firebaseio.com"
+});
+
+const db = getDatabase();
+const ref = db.ref(`/configs`)
+
+ref.once("value", function (snapshot) {
+  const configs = snapshot.val();
+  setConfig(configs)
+  // Rate Limit
+  if (config.rateLimit) {
+    // Global
+    if (config.rateLimit.global) {
+      const limiter = rateLimit({
+        windowMs: config.rateLimit.global.time,
+        max: config.rateLimit.global.maxCnx,
+        standardHeaders: true,
+        legacyHeaders: false
+      })
+      app.use(limiter)
+    }
+    // By Path
+    config.rateLimit.paths((rl) => {
+      const limiter = rateLimit({
+        windowMs: rl.time,
+        max: rl.maxCnx,
+        standardHeaders: true,
+        legacyHeaders: false
+      })
+      app.use(rl.path, limiter)
+    })
+  }
+
+  // Request Limit 
+  if (config.requestLimiter) {
+    config.requestLimiter.forEach((rl) => {
+      const requestLimiter = RequestLimiter({
+        maxRequests: rl.maxRequests,
+        headers: true,
+        routesList: rl.routesList,
+      });
+      app.use(requestLimiter);
+    })
+  }
+});
+
 
 const port = process.env.PORT || 5000;
 
-// Rate Limit
-if (config.rateLimit) {
-  // Global
-  if (config.rateLimit.global) {
-    const limiter = rateLimit({
-      windowMs: config.rateLimit.global.time,
-      max: config.rateLimit.global.maxCnx,
-      standardHeaders: true,
-      legacyHeaders: false
-    })
-    app.use(limiter)
-  }
-  // By Path
-  config.rateLimit.paths((rl) => {
-    const limiter = rateLimit({
-      windowMs: rl.time,
-      max: rl.maxCnx,
-      standardHeaders: true,
-      legacyHeaders: false
-    })
-    app.use(rl.path, limiter)
-  })
-}
 
-// Request Limit 
-if (config.requestLimiter) {
-  config.requestLimiter.forEach((rl) => {
-    const requestLimiter = RequestLimiter({
-      maxRequests: rl.maxRequests,
-      headers: true,
-      routesList: rl.routesList,
-    });
-    app.use(requestLimiter);
-  })
-}
 app.use(saveTransactionInterceptor)
 
 

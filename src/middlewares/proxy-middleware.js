@@ -5,9 +5,7 @@ async function proxyMiddleware(req, res) {
   const method = req.method.toLowerCase();
   const reqData = getReqData(req);
   const filteredRouters = filterRoutes(method, reqData)
-  req.transaction = {
-    request: reqData
-  }
+  req.transaction.request = reqData;
   if (filteredRouters.length === 0) {
     req.transaction.response = {
       success: false,

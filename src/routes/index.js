@@ -1,16 +1,16 @@
 const express = require('express');
+const { initCallMiddleware } = require('../middlewares/init-call-middleware');
 
-const RequestLimiter = require('express-request-limiter');
 const { proxyMiddleware } = require('../middlewares/proxy-middleware')
 const router = express.Router();
 
-router.get(/.*/, proxyMiddleware);
-router.post(/.*/, proxyMiddleware);
-router.put(/.*/, proxyMiddleware);
-router.patch(/.*/, proxyMiddleware);
-router.delete(/.*/, proxyMiddleware);
-router.options(/.*/, proxyMiddleware);
-router.head(/.*/, proxyMiddleware);
+router.get(/.*/, initCallMiddleware, proxyMiddleware);
+router.post(/.*/, initCallMiddleware, proxyMiddleware);
+router.put(/.*/, initCallMiddleware, proxyMiddleware);
+router.patch(/.*/, initCallMiddleware, proxyMiddleware);
+router.delete(/.*/, initCallMiddleware, proxyMiddleware);
+router.options(/.*/, initCallMiddleware, proxyMiddleware);
+router.head(/.*/, initCallMiddleware, proxyMiddleware);
 
 
 module.exports = router;

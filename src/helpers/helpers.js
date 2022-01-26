@@ -1,6 +1,5 @@
 const ipRangeCheck = require("ip-range-check");
-const configs = require('../../route-config.json');
-const routesConfig = configs.routes;
+const { configs } = require('../configs/configs');
 
 function validateIP(ip, originIPs) {
   if (!originIPs || originIPs.length === 0) {
@@ -21,6 +20,7 @@ function validateIP(ip, originIPs) {
 }
 
 function filterRoutes(method, data) {
+  const routesConfig = configs.routes;
   return routesConfig.filter((r) => {
     return r.methods.includes(method) &&
       data.originalUrl.startsWith(r.path) &&
