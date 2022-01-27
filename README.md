@@ -26,13 +26,11 @@ flowchart LR
     proxy --- config
     proxy --> log
     ui --- log
-    
     server --> proxy 
     server2 --> proxy 
     client --> proxy 
     client2 --> proxy
     operator --> ui
-
     proxy --> api1 
     proxy --> api2 
     proxy --> web1
