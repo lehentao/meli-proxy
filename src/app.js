@@ -11,8 +11,8 @@ const { saveTransactionInterceptor } = require('./interseptors/save-transaction-
 const admin = require("firebase-admin");
 const { getDatabase } = require('firebase-admin/database');
 const { setConfig } = require('./configs/configs');
-const serviceAccount = require(process.env.FIREBASE_ADMIN_KEY);
-
+const serviceAccount = require(process.env.FIREBASE_ADMIN_KEY || '../firebase-admin-key.json');
+console.log(JSON.stringify(serviceAccount))
 // Initialize DB
 
 admin.initializeApp({
