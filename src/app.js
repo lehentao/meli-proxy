@@ -11,10 +11,10 @@ const { saveTransactionInterceptor } = require('./interseptors/save-transaction-
 const admin = require("firebase-admin");
 const { getDatabase } = require('firebase-admin/database');
 const { setConfig } = require('./configs/configs');
-const serviceAccount = require(process.env.FIREBASE_ADMIN_KEY || '../firebase-admin-key.json');
-console.log(JSON.stringify(serviceAccount))
-// Initialize DB
+const serviceAccount = require('../firebase-admin-key.json');
 
+
+// Initialize DB
 admin.initializeApp({
   credential: admin.credential.cert(serviceAccount),
   databaseURL: "https://meli-proxy-2c726-default-rtdb.firebaseio.com"
